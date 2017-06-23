@@ -8,6 +8,7 @@ package demo_minigame;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *
@@ -16,15 +17,11 @@ import java.util.Random;
 public class ClashOfSquads {
     
     Deque<GameUnit> playOrder = new ArrayDeque<>();
-    int[] sequence = new int[16];
-    Random randomTagret; //variable responsible of chosing the target
+    int[] sequence = ThreadLocalRandom.current().ints(0, 16).distinct().limit(16).toArray();
+    Random random; //variable responsible of chosing the target
     
     public ClashOfSquads(){
         GenerateSquads newSquads = new GenerateSquads();
-    }
-    
-    private void generateSequence(){
-        
     }
     
     private void generateQueue(){

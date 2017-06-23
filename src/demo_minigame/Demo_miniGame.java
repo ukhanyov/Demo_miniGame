@@ -5,7 +5,6 @@
  */
 package demo_minigame;
 
-
 /**
  *
  * @author Oleg
@@ -19,15 +18,15 @@ public class Demo_miniGame {
         
         GenerateSquads newSquad = new GenerateSquads();
         
-        for(GameUnit iterator : newSquad.lightSquad){
-            System.out.println(iterator.toString());
-        }
-        
-        System.out.println("*******************************");
-        
-        for(GameUnit iterator : newSquad.darkSquad){
-            System.out.println(iterator.toString());
-        }
-    
+//        for(GameUnit iterator : newSquad.lightSquad){
+//            System.out.println(iterator.toString());
+//        }
+//        
+//        System.out.println("*******************************");
+//        
+//        for(GameUnit iterator : newSquad.darkSquad){
+//            System.out.println(iterator.toString());
+//        }
+
     }
 }
