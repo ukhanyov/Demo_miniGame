@@ -16,17 +16,20 @@ import java.util.Random;
 public class ClashOfSquads {
     
     Deque<GameUnit> playOrder = new ArrayDeque<>();
-    
-    //TODO initialize two deque(s)
+    int[] sequence = new int[16];
     Random randomTagret; //variable responsible of chosing the target
     
     public ClashOfSquads(){
         GenerateSquads newSquads = new GenerateSquads();
     }
     
+    private void generateSequence(){
+        
+    }
+    
     private void generateQueue(){
         //TODO this method generates primary queue of events
-        
+        //playOrder.add();
     }
     
     private void actionActionAction(){
