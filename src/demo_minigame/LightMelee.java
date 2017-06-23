@@ -30,9 +30,13 @@ public class LightMelee extends GameUnit{
                 priority = false;
                 break;
             default:
-                JOptionPane.showMessageDialog(null, "Error occured while creating a melrr unit of light", "InfoBox: " + "Error Message", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error occured while creating a melee unit of light", "InfoBox: " + "Error Message", JOptionPane.INFORMATION_MESSAGE);
                 break;
         }
     }
     
+    @Override
+    public boolean isLight(){
+        return true;
+    }
 }

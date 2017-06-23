@@ -37,4 +37,9 @@ public class LightMage extends GameUnit{
                 break;
         }
     }
+    
+    @Override
+    public boolean isLight(){
+        return true;
+    }
 }

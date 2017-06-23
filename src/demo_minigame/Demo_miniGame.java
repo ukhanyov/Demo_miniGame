@@ -5,10 +5,13 @@
  */
 package demo_minigame;
 
+import static demo_minigame.UnitAbilities.ATTACK_MELEE;
+
 /**
  *
  * @author Oleg
  */
+
 public class Demo_miniGame {
 
     /**
@@ -16,18 +19,20 @@ public class Demo_miniGame {
      */
     public static void main(String[] args) {
         
+        Enum aEnum = UnitAbilities.ATTACK_MELEE;
+        
         ClashOfSquads clash = new ClashOfSquads();
         clash.actionActionAction();
         
         for(GameUnit iterator : clash.playOrder){
             System.out.println(iterator.toString());
         }
-//        
-//        System.out.println("*******************************");
-//        
-//        for(GameUnit iterator : newSquad.darkSquad){
-//            System.out.println(iterator.toString());
-//        }
+        
+        System.out.println("*******************************");
+        
+        for(Enum iterator : clash.castedAbilities){
+            System.out.println(iterator.toString());
+        }
 
     }
 }

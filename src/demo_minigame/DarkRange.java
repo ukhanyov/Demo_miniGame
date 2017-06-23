@@ -40,4 +40,8 @@ public class DarkRange extends GameUnit{
         }
     }
     
+    @Override
+    public boolean isDark(){
+        return true;
+    }
 }

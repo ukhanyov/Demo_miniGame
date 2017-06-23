@@ -30,9 +30,14 @@ public class DarkMelee extends GameUnit{
                 priority = false;
                 break;
             default:
-                JOptionPane.showMessageDialog(null, "Error occured while creating a melrr unit of darkness", "InfoBox: " + "Error Message", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error occured while creating a melee unit of darkness", "InfoBox: " + "Error Message", JOptionPane.INFORMATION_MESSAGE);
                 break;
         }
+    }
+    
+    @Override
+    public boolean isDark(){
+        return true;
     }
     
 }

@@ -17,10 +17,16 @@ class GameUnit {
     Enum className;
     List<Enum> abilitiesOfUnit = new ArrayList<>();
     int healt = 100;
+    int attackMelee;
+    int attackRange;
+    int castMagicDamage;
     boolean priority = false;
+    
+    public boolean isLight(){return false;}
+    public boolean isDark(){return false;}
     
     @Override
     public String toString(){
-        return "[Unit type: " + className + "]";
+        return "[Unit type: " + className + "]" + "[Current health: " + healt + "]";
     }
 }

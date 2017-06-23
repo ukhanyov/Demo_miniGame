@@ -40,4 +40,8 @@ public class LightRange extends GameUnit{
         }
     }
     
+    @Override
+    public boolean isLight(){
+        return true;
+    }
 }

@@ -36,4 +36,9 @@ public class DarkMage extends GameUnit{
                 break;
         }
     }
+    
+    @Override
+    public boolean isDark(){
+        return true;
+    }
 }
