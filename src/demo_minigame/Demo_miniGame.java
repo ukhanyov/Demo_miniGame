@@ -22,15 +22,17 @@ public class Demo_miniGame {
         //ClashOfSquads clash = new ClashOfSquads();
         //clash.actionActionAction();
         
-        GenerateSquads squad = new GenerateSquads();
+        ClashOfSquads squad = new ClashOfSquads();
+        squad.actionActionAction();
         
-        for(GameUnit iterator : squad.lightSquad){
+        
+        for(GameUnit iterator : squad.activeLightSquad){
             System.out.println(iterator.toString());
         }
         
         System.out.println("*******************************");
         
-        for(GameUnit iterator : squad.darkSquad){
+        for(GameUnit iterator : squad.activeDarkSquad){
             System.out.println(iterator.toString());
         }
 

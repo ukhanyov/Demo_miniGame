@@ -19,9 +19,9 @@ import javax.swing.JOptionPane;
  */
 public class GenerateSquads {
     
-    static int numberOfMagesInSquad = 1;
-    static int numberOfRangeUnitsInSquad = 3;
-    static int numberOfMeleeUnitsInSquad = 4;
+    static int numberOfMagesInSquad = 0;
+    static int numberOfRangeUnitsInSquad = 0;
+    static int numberOfMeleeUnitsInSquad = 2;
     
     Random random = new Random();
     List<Enum> abilitiesDumper = new ArrayList<>();
@@ -54,13 +54,13 @@ public class GenerateSquads {
             case 0:
                 abilitiesDumper.add(CAST_PRIORITY);
                 abilitiesDumper.add(CAST_MAGIC_DAMAGE);
-                lightSquad.add(new GameUnit(ELVEN_MAGE, abilitiesDumper, 0, 0, 10));
+                lightSquad.add(new GameUnit(ELVEN_MAGE, abilitiesDumper, 0, 0, 10, true));
                 abilitiesDumper.clear();
                 break;
             case 1:
                 abilitiesDumper.add(CAST_PRIORITY);
                 abilitiesDumper.add(CAST_MAGIC_DAMAGE);
-                lightSquad.add(new GameUnit(HUMAN_MAGE, abilitiesDumper, 0, 0, 4));
+                lightSquad.add(new GameUnit(HUMAN_MAGE, abilitiesDumper, 0, 0, 4, true));
                 abilitiesDumper.clear();
                 break;
             default:
@@ -73,13 +73,13 @@ public class GenerateSquads {
             case 0:
                 abilitiesDumper.add(ATTACK_MELEE);
                 abilitiesDumper.add(ATTACK_RANGED);
-                lightSquad.add(new GameUnit(ELVEN_ARCHER, abilitiesDumper, 3, 7, 0));
+                lightSquad.add(new GameUnit(ELVEN_ARCHER, abilitiesDumper, 3, 7, 0, true));
                 abilitiesDumper.clear();
                 break;
             case 1:
                 abilitiesDumper.add(ATTACK_MELEE);
                 abilitiesDumper.add(ATTACK_RANGED);
-                lightSquad.add(new GameUnit(HUMAN_CROSSBOWMAN, abilitiesDumper, 3, 5, 0));
+                lightSquad.add(new GameUnit(HUMAN_CROSSBOWMAN, abilitiesDumper, 3, 5, 0, true));
                 abilitiesDumper.clear();
                 break;
             default:
@@ -91,12 +91,12 @@ public class GenerateSquads {
         switch(seed){
             case 0:
                 abilitiesDumper.add(ATTACK_MELEE);
-                lightSquad.add(new GameUnit(ELVEN_WARRIOR, abilitiesDumper, 15, 0, 0));
+                lightSquad.add(new GameUnit(ELVEN_WARRIOR, abilitiesDumper, 15, 0, 0, true));
                 abilitiesDumper.clear();
                 break;
             case 1:
                 abilitiesDumper.add(ATTACK_MELEE);
-                lightSquad.add(new GameUnit(HUMAN_WARRIOR, abilitiesDumper, 18, 0, 0));
+                lightSquad.add(new GameUnit(HUMAN_WARRIOR, abilitiesDumper, 18, 0, 0, true));
                 abilitiesDumper.clear();
                 break;
             default:
@@ -110,13 +110,13 @@ public class GenerateSquads {
             case 0:
                 abilitiesDumper.add(CAST_PRIORITY);
                 abilitiesDumper.add(CAST_CURSE);
-                darkSquad.add(new GameUnit(ORC_SHAMAN, abilitiesDumper, 0, 0, 0));
+                darkSquad.add(new GameUnit(ORC_SHAMAN, abilitiesDumper, 0, 0, 0, false));
                 abilitiesDumper.clear();
                 break;
             case 1:
                 abilitiesDumper.add(CAST_DISEASE);
                 abilitiesDumper.add(CAST_MAGIC_DAMAGE);
-                darkSquad.add(new GameUnit(UNDEAD_NECROMANT, abilitiesDumper, 0, 0, 5));
+                darkSquad.add(new GameUnit(UNDEAD_NECROMANT, abilitiesDumper, 0, 0, 5, false));
                 abilitiesDumper.clear();
                 break;
             default:
@@ -129,13 +129,13 @@ public class GenerateSquads {
             case 0:
                 abilitiesDumper.add(ATTACK_MELEE);
                 abilitiesDumper.add(ATTACK_RANGED);
-                darkSquad.add(new GameUnit(ORC_ARCHER, abilitiesDumper, 2, 3, 0));
+                darkSquad.add(new GameUnit(ORC_ARCHER, abilitiesDumper, 2, 3, 0, false));
                 abilitiesDumper.clear();
                 break;
             case 1:
                 abilitiesDumper.add(ATTACK_MELEE);
                 abilitiesDumper.add(ATTACK_RANGED);
-                darkSquad.add(new GameUnit(UNDEAD_HUNTER, abilitiesDumper, 2, 4, 0));
+                darkSquad.add(new GameUnit(UNDEAD_HUNTER, abilitiesDumper, 2, 4, 0, false));
                 abilitiesDumper.clear();
                 break;
             default:
@@ -147,12 +147,12 @@ public class GenerateSquads {
         switch(seed){
             case 0:
                 abilitiesDumper.add(ATTACK_MELEE);
-                darkSquad.add(new GameUnit(ORC_GOBLIN, abilitiesDumper, 20, 0, 0));
+                darkSquad.add(new GameUnit(ORC_GOBLIN, abilitiesDumper, 20, 0, 0, false));
                 abilitiesDumper.clear();
                 break;
             case 1:
                 abilitiesDumper.add(ATTACK_MELEE);
-                darkSquad.add(new GameUnit(UNDEAD_ZOMBY, abilitiesDumper, 18, 0, 0));
+                darkSquad.add(new GameUnit(UNDEAD_ZOMBY, abilitiesDumper, 18, 0, 0, false));
                 abilitiesDumper.clear();
                 break;
             default:

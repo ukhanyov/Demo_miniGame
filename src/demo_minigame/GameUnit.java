@@ -24,12 +24,17 @@ class GameUnit {
     boolean lightTeam = false;
     boolean darkTeam = false;
     
-    public GameUnit(Enum className, List<Enum> abilitiesOfUnit, int attackMelee, int attackRange, int castMagicDamage){
+    public GameUnit(Enum className, List<Enum> abilitiesOfUnit, int attackMelee, int attackRange, int castMagicDamage, boolean status){
         this.className = className;
         this.abilitiesOfUnit.addAll(abilitiesOfUnit);
         this.attackMelee = attackMelee;
         this.attackRange = attackRange;
         this.castMagicDamage = castMagicDamage;
+        if(status){
+            changeTeamStatusToLight();
+        }else{
+            changeTeamStatusToDark();
+        }
     }
     
     public boolean isLight(){return lightTeam;}
