@@ -17,7 +17,7 @@ public class Demo_miniGame {
      */
     public static void main(String[] args) {
         
-        GenerateSquad newSquad = new GenerateSquad();
+        GenerateSquads newSquad = new GenerateSquads();
         
         for(GameUnit iterator : newSquad.lightSquad){
             System.out.println(iterator.toString());

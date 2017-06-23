@@ -5,6 +5,8 @@
  */
 package demo_minigame;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Random;
 
 /**
@@ -13,15 +15,18 @@ import java.util.Random;
  */
 public class ClashOfSquads {
     
+    Deque<GameUnit> playOrder = new ArrayDeque<>();
+    
     //TODO initialize two deque(s)
     Random randomTagret; //variable responsible of chosing the target
     
     public ClashOfSquads(){
-        GenerateSquad newSquad = new GenerateSquad();
+        GenerateSquads newSquads = new GenerateSquads();
     }
     
     private void generateQueue(){
         //TODO this method generates primary queue of events
+        
     }
     
     private void actionActionAction(){

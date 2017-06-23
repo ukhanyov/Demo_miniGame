@@ -13,14 +13,14 @@ import java.util.Random;
  *
  * @author Oleg
  */
-public class GenerateSquad {
+public class GenerateSquads {
     
     Random random = new Random();
     
     List<GameUnit> lightSquad = new ArrayList<>();
     List<GameUnit> darkSquad = new ArrayList<>();
     
-    public GenerateSquad(){
+    public GenerateSquads(){
         lightSquad.add(new LightMage(random.nextInt(2)));
         
         lightSquad.add(new LightRange(random.nextInt(2)));
