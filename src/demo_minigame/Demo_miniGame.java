@@ -16,11 +16,12 @@ public class Demo_miniGame {
      */
     public static void main(String[] args) {
         
-        GenerateSquads newSquad = new GenerateSquads();
+        ClashOfSquads clash = new ClashOfSquads();
+        clash.actionActionAction();
         
-//        for(GameUnit iterator : newSquad.lightSquad){
-//            System.out.println(iterator.toString());
-//        }
+        for(GameUnit iterator : clash.playOrder){
+            System.out.println(iterator.toString());
+        }
 //        
 //        System.out.println("*******************************");
 //        
