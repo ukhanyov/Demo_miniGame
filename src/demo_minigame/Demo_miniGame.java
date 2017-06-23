@@ -19,18 +19,18 @@ public class Demo_miniGame {
      */
     public static void main(String[] args) {
         
-        Enum aEnum = UnitAbilities.ATTACK_MELEE;
+        //ClashOfSquads clash = new ClashOfSquads();
+        //clash.actionActionAction();
         
-        ClashOfSquads clash = new ClashOfSquads();
-        clash.actionActionAction();
+        GenerateSquads squad = new GenerateSquads();
         
-        for(GameUnit iterator : clash.playOrder){
+        for(GameUnit iterator : squad.lightSquad){
             System.out.println(iterator.toString());
         }
         
         System.out.println("*******************************");
         
-        for(Enum iterator : clash.castedAbilities){
+        for(GameUnit iterator : squad.darkSquad){
             System.out.println(iterator.toString());
         }
 
