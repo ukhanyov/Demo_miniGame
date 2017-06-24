@@ -22,7 +22,6 @@ class GameUnit {
     double castMagicDamage;
     
     boolean priorityStatus = false;
-    boolean curseStatus = false; //I have chose it to be an oposite to a priority (send to the end of the queue or, if present, dispell priority)
     boolean diseaseStatus = false; //I have chose to set disease on a one turn
     
     boolean lightTeam = false;

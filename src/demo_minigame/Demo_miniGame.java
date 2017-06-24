@@ -5,7 +5,6 @@
  */
 package demo_minigame;
 
-import static demo_minigame.UnitAbilities.ATTACK_MELEE;
 import javax.swing.JOptionPane;
 
 /**

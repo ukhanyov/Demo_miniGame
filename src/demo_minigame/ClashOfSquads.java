@@ -74,7 +74,9 @@ public class ClashOfSquads {
                     loggerWriteToTheConsole(unit, enemyTeam.get(randomTarget), ATTACK_MELEE, unit.attackMelee);
                 }
                 if(isDead(enemyTeam.get(randomTarget))){
+                    System.out.println("");
                     System.out.println("->UNIT DIED: " + enemyTeam.get(randomTarget));
+                    System.out.println("");
                     enemyTeam.remove(randomTarget);
                 }
                 break;
@@ -90,7 +92,9 @@ public class ClashOfSquads {
                     loggerWriteToTheConsole(unit, enemyTeam.get(randomTarget), ATTACK_RANGED, unit.attackRange);
                 }
                 if(isDead(enemyTeam.get(randomTarget))){
+                    System.out.println("");
                     System.out.println("->UNIT DIED: " + enemyTeam.get(randomTarget));
+                    System.out.println("");
                     enemyTeam.remove(randomTarget);
                 }
                 break;
@@ -99,20 +103,24 @@ public class ClashOfSquads {
                 randomTarget = new Random().nextInt(enemyTeam.size());
                 enemyTeam.get(randomTarget).priorityStatus = false;
                 loggerWriteToTheConsole(unit, enemyTeam.get(randomTarget), CAST_CURSE, 0);
-                if(isDead(enemyTeam.get(randomTarget))){
-                    System.out.println("->UNIT DIED: " + enemyTeam.get(randomTarget));
-                    enemyTeam.remove(randomTarget);
-                }
+//                if(isDead(enemyTeam.get(randomTarget))){
+//                    System.out.println("");
+//                    System.out.println("->UNIT DIED: " + enemyTeam.get(randomTarget));
+//                    System.out.println("");
+//                    enemyTeam.remove(randomTarget);
+//                }
                 break;
                 
             case CAST_DISEASE:
                 randomTarget = new Random().nextInt(enemyTeam.size());
                 enemyTeam.get(randomTarget).diseaseStatus = true;
                 loggerWriteToTheConsole(unit, enemyTeam.get(randomTarget), CAST_DISEASE, 0);
-                if(isDead(enemyTeam.get(randomTarget))){
-                    System.out.println("->UNIT DIED: " + enemyTeam.get(randomTarget));
-                    enemyTeam.remove(randomTarget);
-                }
+//                if(isDead(enemyTeam.get(randomTarget))){
+//                    System.out.println("");
+//                    System.out.println("->UNIT DIED: " + enemyTeam.get(randomTarget));
+//                    System.out.println("");
+//                    enemyTeam.remove(randomTarget);
+//                }
                 break;
                 
             case CAST_MAGIC_DAMAGE:
@@ -125,7 +133,9 @@ public class ClashOfSquads {
                     loggerWriteToTheConsole(unit, enemyTeam.get(randomTarget), CAST_MAGIC_DAMAGE, unit.castMagicDamage);
                 }
                 if(isDead(enemyTeam.get(randomTarget))){
+                    System.out.println("");
                     System.out.println("->UNIT DIED: " + enemyTeam.get(randomTarget));
+                    System.out.println("");
                     enemyTeam.remove(randomTarget);
                 }
                 break;
@@ -176,6 +186,9 @@ public class ClashOfSquads {
                 System.out.println(">----------End   of Priority rond---------<");
                 System.out.println("");
             }
+            
+            if(activeLightSquad.isEmpty()){ System.out.println("DARK FORSES WON!!!"); break;}
+            if(activeDarkSquad.isEmpty()){ System.out.println("LIGHT FORSES WON!!!"); break;}
 
             for(GameUnit iterator : playOrder){
                 performAllNecessaryChecksAnsStepsForCurrentUnit(iterator);
@@ -190,11 +203,13 @@ public class ClashOfSquads {
                 }
             }
             
+            if(activeLightSquad.isEmpty()){ System.out.println("DARK FORSES WON!!!"); break;}
+            if(activeDarkSquad.isEmpty()){ System.out.println("LIGHT FORSES WON!!!"); break;}
+            
             numberOfRounds++;
             loggerTurnDisplayer(numberOfRounds);
             
-            if(activeLightSquad.isEmpty()){ System.out.println("DARK FORSES WON!!!"); break;}
-            if(activeDarkSquad.isEmpty()){ System.out.println("LIGHT FORSES WON!!!"); break;} 
+             
         }
         
         System.out.println("*********************************");
