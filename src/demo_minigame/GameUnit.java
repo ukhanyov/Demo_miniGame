@@ -17,10 +17,14 @@ class GameUnit {
     Enum className;
     List<Enum> abilitiesOfUnit = new ArrayList<>();
     int healt = 100;
-    int attackMelee;
-    int attackRange;
-    int castMagicDamage;
-    boolean priority = false;
+    double attackMelee;
+    double attackRange;
+    double castMagicDamage;
+    
+    boolean priorityStatus = false;
+    boolean curseStatus = false; //I have chose it to be an oposite to a priority (send to the end of the queue or, if present, dispell priority)
+    boolean diseaseStatus = false; //I have chose to set disease on a one turn
+    
     boolean lightTeam = false;
     boolean darkTeam = false;
     
@@ -42,10 +46,10 @@ class GameUnit {
     
     @Override
     public String toString(){
-        return "[Unit type: " + className + "]" + "[Current health: " + healt + "]";
+        return className + "[HP: " + healt + "]";
     }
     
-    public void damageHealth(int damage){
+    public void damageHealth(double damage){
         healt -= damage;
     }
     

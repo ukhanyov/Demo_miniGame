@@ -24,7 +24,7 @@ public class Demo_miniGame {
         try{
             squad.actionActionAction();
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e.toString(), "InfoBox: " + "Error Message", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, e.toString(), "InfoBox at main method: " + "Error Message", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }

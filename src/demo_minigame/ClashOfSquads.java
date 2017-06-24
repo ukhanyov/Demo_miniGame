@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JOptionPane;
-import demo_minigame.UnitAbilities;
+import static demo_minigame.UnitAbilities.*;
 
 /**
  *
@@ -28,11 +28,14 @@ public class ClashOfSquads {
     
     GenerateSquads newSquads = new GenerateSquads();
     
-    
+    double priorMeleeDamage;
+    double priorRangeDamage;
+    double priorMagicDamage;
+    GameUnit targetPriorityUnit;
+    int numberOfRounds = 1;
     
     public ClashOfSquads(){
-        //GenerateSquads newSquads = new GenerateSquads();
-        
+
         activeLightSquad.addAll(newSquads.lightSquad);
         activeDarkSquad.addAll(newSquads.darkSquad);
         
@@ -51,8 +54,87 @@ public class ClashOfSquads {
             playOrder.add(generalList.get(sequence[i]));
         }
     }
-
+    
+    private void performAction(GameUnit unit, List<GameUnit> unitsTeam, List<GameUnit> enemyTeam, UnitAbilities chosenAbility){
+        
+        int randomTarget = 0;
+        
+        switch(chosenAbility){
+            
+            case ATTACK_MELEE:
+                randomTarget = new Random().nextInt(enemyTeam.size());
+                enemyTeam.get(randomTarget).damageHealth(unit.attackMelee);
+                loggerWriteToTheConsole(unit, enemyTeam.get(randomTarget), ATTACK_MELEE, unit.attackMelee);
+                if(isDead(enemyTeam.get(randomTarget))){
+                    System.out.println("->UNIT DIED: " + enemyTeam.get(randomTarget));
+                    enemyTeam.remove(randomTarget);
+                }
+                break;
+                
+            case ATTACK_RANGED:
+                randomTarget = new Random().nextInt(enemyTeam.size());
+                enemyTeam.get(randomTarget).damageHealth(unit.attackRange);
+                loggerWriteToTheConsole(unit, enemyTeam.get(randomTarget), ATTACK_RANGED, unit.attackRange);
+                if(isDead(enemyTeam.get(randomTarget))){
+                    System.out.println("->UNIT DIED: " + enemyTeam.get(randomTarget));
+                    enemyTeam.remove(randomTarget);
+                }
+                break;
+                
+            case CAST_CURSE:
+                randomTarget = new Random().nextInt(enemyTeam.size());
+                enemyTeam.get(randomTarget).curseStatus = true;
+                loggerWriteToTheConsole(unit, enemyTeam.get(randomTarget), CAST_CURSE, 0);
+                if(isDead(enemyTeam.get(randomTarget))){
+                    System.out.println("->UNIT DIED: " + enemyTeam.get(randomTarget));
+                    enemyTeam.remove(randomTarget);
+                }
+                break;
+                
+            case CAST_DISEASE:
+                randomTarget = new Random().nextInt(enemyTeam.size());
+                enemyTeam.get(randomTarget).diseaseStatus = true;
+                loggerWriteToTheConsole(unit, enemyTeam.get(randomTarget), CAST_DISEASE, 0);
+                if(isDead(enemyTeam.get(randomTarget))){
+                    System.out.println("->UNIT DIED: " + enemyTeam.get(randomTarget));
+                    enemyTeam.remove(randomTarget);
+                }
+                break;
+                
+            case CAST_MAGIC_DAMAGE:
+                randomTarget = new Random().nextInt(enemyTeam.size());
+                enemyTeam.get(randomTarget).damageHealth(unit.castMagicDamage);
+                loggerWriteToTheConsole(unit, enemyTeam.get(randomTarget), CAST_MAGIC_DAMAGE, unit.castMagicDamage);
+                if(isDead(enemyTeam.get(randomTarget))){
+                    System.out.println("->UNIT DIED: " + enemyTeam.get(randomTarget));
+                    enemyTeam.remove(randomTarget);
+                }
+                break;
+                
+            case CAST_PRIORITY:
+                randomTarget = new Random().nextInt(unitsTeam.size());
+                unitsTeam.get(randomTarget).priorityStatus = true;
+                loggerWriteToTheConsole(unit, unitsTeam.get(randomTarget), CAST_PRIORITY, 0);
+                targetPriorityUnit = unitsTeam.get(randomTarget);
+                break;
+                
+                default:
+                    JOptionPane.showMessageDialog(null, "Error occured while casting ability", "InfoBox: " + "Error Message", JOptionPane.INFORMATION_MESSAGE);
+                break;
+        }
+    }
+    
     public void actionActionAction(){
+        
+        System.out.println("*********************************");
+        for(GameUnit iterator : activeLightSquad){
+                System.out.println(iterator.toString());
+        }
+        System.out.println("*********************************");
+        for(GameUnit iterator : activeDarkSquad){
+                System.out.println(iterator.toString());
+        }
+        System.out.println("*********************************");
         
         while(true){
 
@@ -61,121 +143,74 @@ public class ClashOfSquads {
             for(GameUnit iterator : playOrder){
                 
                 UnitAbilities chosenAbility = (UnitAbilities) iterator.abilitiesOfUnit.get(new Random().nextInt(iterator.abilitiesOfUnit.size()));
-                int randomTarget = 0;
+                applyDisease(iterator);
                 
                 if(!isDead(iterator)){
                     if(iterator.isDark()){
-                        switch(chosenAbility){
-                            case ATTACK_MELEE:
-                                randomTarget = new Random().nextInt(activeLightSquad.size());
-                                activeLightSquad.get(randomTarget).damageHealth(iterator.attackMelee);
-                                loggerWriteToTheConsole(iterator, activeLightSquad.get(randomTarget), iterator.attackMelee);
-                                if(isDead(activeLightSquad.get(randomTarget))){
-                                    activeLightSquad.remove(randomTarget);
-                                }
-                                break;
-                            case ATTACK_RANGED:
-                                randomTarget = new Random().nextInt(activeLightSquad.size());
-                                activeLightSquad.get(randomTarget).damageHealth(iterator.attackRange);
-                                loggerWriteToTheConsole(iterator, activeLightSquad.get(randomTarget), iterator.attackRange);
-                                if(isDead(activeLightSquad.get(randomTarget))){
-                                    activeLightSquad.remove(randomTarget);
-                                }
-                                break;
-                            case CAST_CURSE:
-                                randomTarget = new Random().nextInt(activeLightSquad.size());
-                                activeLightSquad.get(randomTarget).healt -= 0;
-                                break;
-                            case CAST_DISEASE:
-                                randomTarget = new Random().nextInt(activeLightSquad.size());
-                                activeLightSquad.get(randomTarget).healt -= 0;
-                                break;
-                            case CAST_MAGIC_DAMAGE:
-                                randomTarget = new Random().nextInt(activeLightSquad.size());
-                                activeLightSquad.get(randomTarget).damageHealth(iterator.castMagicDamage);
-                                loggerWriteToTheConsole(iterator, activeLightSquad.get(randomTarget), iterator.castMagicDamage);
-                                if(isDead(activeLightSquad.get(randomTarget))){
-                                    activeLightSquad.remove(randomTarget);
-                                }
-                                break;
-                            case CAST_PRIORITY:
-                                randomTarget = new Random().nextInt(activeLightSquad.size());
-                                activeLightSquad.get(randomTarget).healt -= 0;
-                                break;
-                            default:
-                                JOptionPane.showMessageDialog(null, "Error occured while casting ability", "InfoBox: " + "Error Message", JOptionPane.INFORMATION_MESSAGE);
-                                break;
-                        }
-
-                    }else{
-                        if(iterator.isLight()){
-
-                            switch(chosenAbility){
-                                case ATTACK_MELEE:
-                                    randomTarget = new Random().nextInt(activeDarkSquad.size());
-                                    activeDarkSquad.get(randomTarget).damageHealth(iterator.attackMelee);
-                                    loggerWriteToTheConsole(iterator, activeDarkSquad.get(randomTarget), iterator.attackMelee);
-                                    if(isDead(activeDarkSquad.get(randomTarget))){
-                                        activeDarkSquad.remove(randomTarget);
-                                    }
-                                    break;
-                                case ATTACK_RANGED:
-                                    randomTarget = new Random().nextInt(activeDarkSquad.size());
-                                    activeDarkSquad.get(randomTarget).damageHealth(iterator.attackRange);
-                                    loggerWriteToTheConsole(iterator, activeDarkSquad.get(randomTarget), iterator.attackRange);
-                                    if(isDead(activeDarkSquad.get(randomTarget))){
-                                        activeDarkSquad.remove(randomTarget);
-                                    }
-                                    break;
-                                case CAST_MAGIC_DAMAGE:
-                                    randomTarget = new Random().nextInt(activeDarkSquad.size());
-                                    activeDarkSquad.get(randomTarget).damageHealth(iterator.castMagicDamage);
-                                    loggerWriteToTheConsole(iterator, activeDarkSquad.get(randomTarget), iterator.castMagicDamage);
-                                    if(isDead(activeDarkSquad.get(randomTarget))){
-                                        activeDarkSquad.remove(randomTarget);
-                                    }
-                                    break;
-                                case CAST_PRIORITY:
-                                    activeDarkSquad.get(randomTarget).healt -= 0;
-                                    break;
-                                default:
-                                    JOptionPane.showMessageDialog(null, "Error occured while casting ability", "InfoBox: " + "Error Message", JOptionPane.INFORMATION_MESSAGE);
-                                    break;
-                            }
-
-                        }else{   
-                            JOptionPane.showMessageDialog(null, "Error occured while taking an action", "InfoBox: " + "Error Message", JOptionPane.INFORMATION_MESSAGE);
+                        performAction(iterator, activeDarkSquad, activeLightSquad, chosenAbility);
+                    }
+                    if(iterator.isLight()){
+                        performAction(iterator, activeLightSquad, activeDarkSquad, chosenAbility);
+                    }
+                }
+                
+                freeFromDisease(iterator);                
+                playOrder.poll();
+                
+                if(chosenAbility == CAST_PRIORITY){              
+                    for(GameUnit priorityIterator : playOrder){
+                        playOrder.peek();
+                        if(priorityIterator.priorityStatus){
+                            priorityIterator.priorityStatus = false;
+                            playOrder.poll();
+                            playOrder.addFirst(targetPriorityUnit);
+                            targetPriorityUnit = null;
+                            break;
                         }
                     }
                 }
-                playOrder.poll();
+                
                 if(activeDarkSquad.isEmpty()) break;
                 if(activeLightSquad.isEmpty()) break;
             }
             
-            for(GameUnit iterator : activeLightSquad){
+            numberOfRounds++;
+            loggerTurnDisplayer(numberOfRounds);
+            
+            if(activeLightSquad.isEmpty()){ System.out.println("DARK FORSES WON!!!"); break;}
+            if(activeDarkSquad.isEmpty()){ System.out.println("LIGHT FORSES WON!!!"); break;} 
+        }
+        
+        System.out.println("*********************************");
+        for(GameUnit iterator : activeLightSquad){
                 System.out.println(iterator.toString());
-            }
-
-            System.out.println("");
-            
-            System.out.println("*******************************");
-
-            for(GameUnit iterator : activeDarkSquad){
+        }
+        System.out.println("*********************************");
+        for(GameUnit iterator : activeDarkSquad){
                 System.out.println(iterator.toString());
-            }
-            
-            System.out.println("");
-            
-            if(activeLightSquad.isEmpty()){
-                System.out.println("DARK FORSES WON!!!");
-                break;
-            }else{if(activeDarkSquad.isEmpty()){
-                    System.out.println("LIGHT FORSES WON!!!");
-                    break;                
-                }
-            }
-
+        }
+        System.out.println("*********************************");
+        
+    }
+    
+    private void applyDisease(GameUnit iterator){
+        if(iterator.diseaseStatus){
+            priorMeleeDamage = iterator.attackMelee;
+            priorRangeDamage = iterator.attackRange;
+            priorMagicDamage = iterator.castMagicDamage;
+                    
+            iterator.attackMelee = priorMeleeDamage / 2.0;
+            iterator.attackRange = priorRangeDamage / 2.0;
+            iterator.castMagicDamage = priorMagicDamage / 2.0;
+        }
+    }
+    
+    private void freeFromDisease(GameUnit iterator){
+        if(iterator.diseaseStatus){
+            iterator.diseaseStatus = false;
+            iterator.attackMelee = priorMeleeDamage;
+            iterator.attackRange = priorRangeDamage;
+            iterator.castMagicDamage = priorMagicDamage;
         }
     }
     
@@ -187,11 +222,16 @@ public class ClashOfSquads {
         //TODO this method must write battle events into the file
     }
     
-    private void loggerWriteToTheConsole(GameUnit attacker, GameUnit deffender, int damage){
-        System.out.print(attacker.toString());
-        System.out.print("Delt (" + damage + ") damage to ");
-        System.out.print(deffender.toString() + "\n");
-        System.out.println("-------------------------------------------");
+    private void loggerWriteToTheConsole(GameUnit attacker, GameUnit deffender, Enum skill, double damage){
+        if(attacker.diseaseStatus){
+            System.out.printf("|%-30s|->|%-20s|->|%-4s*|->|%-30s|\n", attacker.toString(), skill, damage, deffender.toString());
+        }else{
+            System.out.printf("|%-30s|->|%-20s|->|%-5s|->|%-30s|\n", attacker.toString(), skill, damage, deffender.toString());
+        }
+    }
+    
+    private void loggerTurnDisplayer(int numberOfRounds){
+        System.out.println("***************" + numberOfRounds + "***************");
     }
     
 }
