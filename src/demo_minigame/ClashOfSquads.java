@@ -54,7 +54,7 @@ public class ClashOfSquads {
 
     public void actionActionAction(){
         
-        for(int i = 0; i < 10; i++){
+        while(true){
 
             generateQueue();
 
@@ -149,7 +149,23 @@ public class ClashOfSquads {
                     }
                 }
                 playOrder.poll();
+                if(activeDarkSquad.isEmpty()) break;
+                if(activeLightSquad.isEmpty()) break;
             }
+            
+            for(GameUnit iterator : activeLightSquad){
+                System.out.println(iterator.toString());
+            }
+
+            System.out.println("");
+            
+            System.out.println("*******************************");
+
+            for(GameUnit iterator : activeDarkSquad){
+                System.out.println(iterator.toString());
+            }
+            
+            System.out.println("");
             
             if(activeLightSquad.isEmpty()){
                 System.out.println("DARK FORSES WON!!!");

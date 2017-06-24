@@ -6,6 +6,7 @@
 package demo_minigame;
 
 import static demo_minigame.UnitAbilities.ATTACK_MELEE;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,23 +19,12 @@ public class Demo_miniGame {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        //ClashOfSquads clash = new ClashOfSquads();
-        //clash.actionActionAction();
-        
-        ClashOfSquads squad = new ClashOfSquads();
-        squad.actionActionAction();
-        
-        
-        for(GameUnit iterator : squad.activeLightSquad){
-            System.out.println(iterator.toString());
-        }
-        
-        System.out.println("*******************************");
-        
-        for(GameUnit iterator : squad.activeDarkSquad){
-            System.out.println(iterator.toString());
-        }
 
+        ClashOfSquads squad = new ClashOfSquads();
+        try{
+            squad.actionActionAction();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.toString(), "InfoBox: " + "Error Message", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }

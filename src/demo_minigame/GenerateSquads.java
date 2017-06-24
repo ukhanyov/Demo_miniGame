@@ -19,9 +19,9 @@ import javax.swing.JOptionPane;
  */
 public class GenerateSquads {
     
-    static int numberOfMagesInSquad = 0;
-    static int numberOfRangeUnitsInSquad = 0;
-    static int numberOfMeleeUnitsInSquad = 2;
+    static int numberOfMagesInSquad = 1;
+    static int numberOfRangeUnitsInSquad = 3;
+    static int numberOfMeleeUnitsInSquad = 4;
     
     Random random = new Random();
     List<Enum> abilitiesDumper = new ArrayList<>();
