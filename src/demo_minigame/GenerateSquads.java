@@ -31,6 +31,9 @@ public class GenerateSquads {
     List<GameUnit> lightSquad = new ArrayList<>();
     List<GameUnit> darkSquad = new ArrayList<>();
     
+    /**
+     * Class constructor which generates two squads of specified size, with randomized squad members
+     */
     public GenerateSquads(){
         
         for(int i = 0; i < numberOfMagesInSquad; i++){
@@ -49,6 +52,11 @@ public class GenerateSquads {
         }
     }
     
+    /**
+     * Crates a mage GameUnit for the Light team
+     * 
+     * @param seed is randomly chosen
+     */
     private void createLigtMage(int seed){
         switch(seed){
             case 0:
@@ -68,6 +76,12 @@ public class GenerateSquads {
                 break;
         }
     }
+    
+    /**
+     * Crates a range GameUnit for the Light team
+     * 
+     * @param seed is randomly chosen
+     */
     private void createLigtRangeUnit(int seed){
         switch(seed){
             case 0:
@@ -87,6 +101,12 @@ public class GenerateSquads {
                 break;
         }
     }
+    
+    /**
+     * Crates a melee GameUnit for the Light team
+     * 
+     * @param seed is randomly chosen
+     */
     private void createLigtMeleeUnit(int seed){
         switch(seed){
             case 0:
@@ -105,6 +125,11 @@ public class GenerateSquads {
         }
     }
     
+    /**
+     * Crates a mage GameUnit for the Dark team
+     * 
+     * @param seed is randomly chosen
+     */
     private void createDarkMage(int seed){
         switch(seed){
             case 0:
@@ -124,6 +149,12 @@ public class GenerateSquads {
                 break;
         }
     }
+    
+    /**
+     * Crates a range GameUnit for the Dark team
+     * 
+     * @param seed is randomly chosen
+     */
     private void createDarkRangeUnit(int seed){
         switch(seed){
             case 0:
@@ -143,6 +174,12 @@ public class GenerateSquads {
                 break;
         }
     }
+    
+    /**
+     * Crates a melee GameUnit for the Dark team
+     * 
+     * @param seed is randomly chosen
+     */
     private void createDarkMeleeUnit(int seed){
         switch(seed){
             case 0:

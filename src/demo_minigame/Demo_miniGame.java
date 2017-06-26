@@ -20,6 +20,7 @@ public class Demo_miniGame {
     public static void main(String[] args) {
 
         ClashOfSquads squad = new ClashOfSquads();
+        //squad.activeDarkSquad.add(new GameUnit());
         try{
             squad.actionActionAction();
         }catch(Exception e){

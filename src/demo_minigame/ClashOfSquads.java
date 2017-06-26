@@ -23,32 +23,38 @@ import java.time.LocalDateTime;
  */
 public class ClashOfSquads {
     
-    Deque<GameUnit> playOrder = new ArrayDeque<>();
-    Deque<GameUnit> priorityDeque = new ArrayDeque<>();
+    Deque<GameUnit> playOrder = new ArrayDeque<>(); //Queue of all active game units, shuffled before every new turn
+    Deque<GameUnit> priorityDeque = new ArrayDeque<>(); //Similar to the playOrder, with the exception of all units in a queue being with priority set to true
     
-    List<GameUnit> generalList = new ArrayList<>();
-    List<GameUnit> activeLightSquad = new ArrayList<>();
-    List<GameUnit> activeDarkSquad = new ArrayList<>();
-    List<Enum> castedAbilities = new ArrayList<>();
+    List<GameUnit> generalList = new ArrayList<>(); //List of all active game units
+    List<GameUnit> activeLightSquad = new ArrayList<>(); //List of active Light units
+    List<GameUnit> activeDarkSquad = new ArrayList<>(); //List of active Dark units
+    List<Enum> castedAbilities = new ArrayList<>(); //List of casted abilities for the turn
     
-    GenerateSquads newSquads = new GenerateSquads();
+    GenerateSquads newSquads = new GenerateSquads(); //Generation of new random squad
     
+    //Those are responsible for a debuff, that cuts damage of te unit
     double priorMeleeDamage;
     double priorRangeDamage;
     double priorMagicDamage;
-    GameUnit targetPriorityUnit;
-    int numberOfRounds = 1;
-
-    LocalDateTime loggLocalDateTime;
     
-    public ClashOfSquads(){
+    GameUnit targetPriorityUnit; //Target of a PRIORITY spell
+    int numberOfRounds = 1; //Rounds counter
 
+    LocalDateTime loggLocalDateTime; //Local date and time, which are used to name a log file
+    
+    /**
+     * Class constructor, that setups local time and, mainly Light and Dark squads
+     */
+    public ClashOfSquads(){
         loggLocalDateTime = LocalDateTime.now();
         activeLightSquad.addAll(newSquads.lightSquad);
         activeDarkSquad.addAll(newSquads.darkSquad);
-        
     }
     
+    /**
+     * Randomly generates a play order queue of all active game units
+     */
     private void generateQueue(){
         
         generalList.clear();
@@ -63,6 +69,14 @@ public class ClashOfSquads {
         }
     }
     
+    /**
+     * Performs actions, triggered by the randomly chose ability of a unit, which turn is now
+     * 
+     * @param unit specifies a unit, which performs an action
+     * @param unitsTeam specifies a team, a part of which is unit, that performs the action
+     * @param enemyTeam marks an enemy team
+     * @param chosenAbility ability, which will be used by the unit
+     */
     private void useAbility(GameUnit unit, List<GameUnit> unitsTeam, List<GameUnit> enemyTeam, UnitAbilities chosenAbility){
         
         int randomTarget;
@@ -145,6 +159,9 @@ public class ClashOfSquads {
         }
     }
     
+    /**
+     * Primary method of this demo, that launches a clash of two squads, until one of the squads will emerge victorious
+     */
     public void actionActionAction(){
         
         loggerWriteToTheFile("*********************************");
@@ -259,6 +276,12 @@ public class ClashOfSquads {
         
     }
     
+    
+    /**
+     * An internal method made to simplify things
+     * 
+     * @param iterator a game unit
+     */
     private void performAllNecessaryChecksAnsStepsForCurrentUnit(GameUnit iterator){
         UnitAbilities chosenAbility = (UnitAbilities) iterator.abilitiesOfUnit.get(new Random().nextInt(iterator.abilitiesOfUnit.size()));
                 applyDisease(iterator);
@@ -273,7 +296,11 @@ public class ClashOfSquads {
         freeFromDisease(iterator);
     }
     
-    //Disease cuts damage
+    /**
+     * Method that responsible for applying a disease (cuts damage output in half)
+     * 
+     * @param iterator game unit
+     */
     private void applyDisease(GameUnit iterator){
         if(iterator.diseaseStatus){
             priorMeleeDamage = iterator.attackMelee;
@@ -286,6 +313,11 @@ public class ClashOfSquads {
         }
     }
     
+    /**
+     * Method that responsible for removing a disease (cuts damage output in half)
+     * 
+     * @param iterator game unit
+     */
     private void freeFromDisease(GameUnit iterator){
         if(iterator.diseaseStatus){
             iterator.diseaseStatus = false;
@@ -295,10 +327,20 @@ public class ClashOfSquads {
         }
     }
     
+    /**
+     * Checks if the unit is dead
+     * 
+     * @param unitTested
+     */
     private boolean isDead(GameUnit unitTested){
         return unitTested.healt <= 0;
     }
     
+    /**
+     * Writes info to the log file (internal use only)
+     * 
+     * @param infoToLog string, that will be written in the file
+     */
     private void loggerWriteToTheFile(String infoToLog){
         
         String specifiedPath = "logFile " + loggLocalDateTime.toString() + ".txt";
@@ -311,6 +353,14 @@ public class ClashOfSquads {
         }
     }
     
+    /**
+     * Writes info to the console (internal use only)
+     * 
+     * @param attacker game unit which performs an action
+     * @param deffender a target of the unit, that performs an action
+     * @param skill a chosen ability of the unit, that performs an action
+     * @param damage a damage, dealt by the unit in action
+     */
     private void loggerWriteToTheConsole(GameUnit attacker, GameUnit deffender, Enum skill, double damage){
         if(attacker.diseaseStatus){
             String infoToLog = String.format("|%-30s|->|%-20s|->|%-5s*|->|%-30s|", attacker.toString(), skill, damage, deffender.toString());
@@ -323,6 +373,11 @@ public class ClashOfSquads {
         }
     }
     
+    /**
+     * Simple method of displaying amount of rounds past
+     * 
+     * @param numberOfRounds number of rounds, that passed
+     */
     private void loggerTurnDisplayer(int numberOfRounds){
         loggerWriteToTheFile("***************" + numberOfRounds + "***************");
         System.out.println("***************" + numberOfRounds + "***************");
