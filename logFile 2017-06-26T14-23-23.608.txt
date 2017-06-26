@@ -1,0 +1,368 @@
+*********************************
+The Light team is:
+
+
+
+ELVEN_MAGE[HP: 100]
+ELVEN_ARCHER[HP: 100]
+ELVEN_ARCHER[HP: 100]
+HUMAN_CROSSBOWMAN[HP: 100]
+ELVEN_WARRIOR[HP: 100]
+ELVEN_WARRIOR[HP: 100]
+HUMAN_WARRIOR[HP: 100]
+HUMAN_WARRIOR[HP: 100]
+*********************************
+The Dark team is: 
+
+
+
+ORC_SHAMAN[HP: 100]
+UNDEAD_HUNTER[HP: 100]
+ORC_ARCHER[HP: 100]
+ORC_ARCHER[HP: 100]
+UNDEAD_ZOMBY[HP: 100]
+ORC_GOBLIN[HP: 100]
+ORC_GOBLIN[HP: 100]
+UNDEAD_ZOMBY[HP: 100]
+*********************************
+***************1***************
+|HUMAN_WARRIOR[HP: 100]        |->|ATTACK_MELEE        |->|18.0  |->|ORC_ARCHER[HP: 82]            |
+
+|HUMAN_WARRIOR[HP: 100]        |->|ATTACK_MELEE        |->|18.0  |->|ORC_SHAMAN[HP: 82]            |
+
+|ELVEN_MAGE[HP: 100]           |->|CAST_PRIORITY       |->|0.0   |->|HUMAN_WARRIOR[HP: 100]        |
+
+|ORC_GOBLIN[HP: 100]           |->|ATTACK_MELEE        |->|20.0  |->|HUMAN_WARRIOR[HP: 80]         |
+
+|ORC_ARCHER[HP: 82]            |->|ATTACK_MELEE        |->|2.0   |->|ELVEN_WARRIOR[HP: 98]         |
+
+|UNDEAD_HUNTER[HP: 100]        |->|ATTACK_RANGED       |->|4.0   |->|HUMAN_WARRIOR[HP: 96]         |
+
+|HUMAN_CROSSBOWMAN[HP: 100]    |->|ATTACK_RANGED       |->|5.0   |->|ORC_ARCHER[HP: 77]            |
+
+|ELVEN_WARRIOR[HP: 100]        |->|ATTACK_MELEE        |->|15.0  |->|ORC_GOBLIN[HP: 85]            |
+
+|ELVEN_WARRIOR[HP: 98]         |->|ATTACK_MELEE        |->|15.0  |->|ORC_GOBLIN[HP: 85]            |
+
+|UNDEAD_ZOMBY[HP: 100]         |->|ATTACK_MELEE        |->|18.0  |->|HUMAN_CROSSBOWMAN[HP: 82]     |
+
+|ELVEN_ARCHER[HP: 100]         |->|ATTACK_MELEE        |->|3.0   |->|UNDEAD_ZOMBY[HP: 97]          |
+
+|ORC_ARCHER[HP: 100]           |->|ATTACK_MELEE        |->|2.0   |->|HUMAN_WARRIOR[HP: 78]         |
+
+|ELVEN_ARCHER[HP: 100]         |->|ATTACK_MELEE        |->|3.0   |->|ORC_SHAMAN[HP: 79]            |
+
+|ORC_GOBLIN[HP: 85]            |->|ATTACK_MELEE        |->|20.0  |->|ELVEN_ARCHER[HP: 80]          |
+
+|ORC_SHAMAN[HP: 79]            |->|CAST_PRIORITY       |->|0.0   |->|ORC_GOBLIN[HP: 85]            |
+
+|UNDEAD_ZOMBY[HP: 100]         |->|ATTACK_MELEE        |->|18.0  |->|ELVEN_WARRIOR[HP: 82]         |
+
+***************2***************
+>----------Start of Priority rond----------<
+
+|HUMAN_WARRIOR[HP: 78]         |->|ATTACK_MELEE_P      |->|27.0  |->|ORC_GOBLIN[HP: 58]            |
+
+|ORC_GOBLIN[HP: 85]            |->|ATTACK_MELEE_P      |->|30.0  |->|ELVEN_MAGE[HP: 70]            |
+
+>----------End   of Priority rond---------<
+
+|HUMAN_WARRIOR[HP: 96]         |->|ATTACK_MELEE        |->|18.0  |->|ORC_GOBLIN[HP: 40]            |
+
+|ORC_GOBLIN[HP: 85]            |->|ATTACK_MELEE        |->|20.0  |->|ELVEN_MAGE[HP: 50]            |
+
+|ELVEN_WARRIOR[HP: 82]         |->|ATTACK_MELEE        |->|15.0  |->|UNDEAD_ZOMBY[HP: 82]          |
+
+|ELVEN_ARCHER[HP: 80]          |->|ATTACK_MELEE        |->|3.0   |->|ORC_GOBLIN[HP: 37]            |
+
+|ELVEN_MAGE[HP: 50]            |->|CAST_PRIORITY       |->|0.0   |->|ELVEN_WARRIOR[HP: 82]         |
+
+|ORC_ARCHER[HP: 77]            |->|ATTACK_MELEE        |->|2.0   |->|HUMAN_CROSSBOWMAN[HP: 80]     |
+
+|ELVEN_WARRIOR[HP: 98]         |->|ATTACK_MELEE        |->|15.0  |->|ORC_ARCHER[HP: 62]            |
+
+|UNDEAD_ZOMBY[HP: 100]         |->|ATTACK_MELEE        |->|18.0  |->|HUMAN_WARRIOR[HP: 78]         |
+
+|HUMAN_WARRIOR[HP: 78]         |->|ATTACK_MELEE        |->|18.0  |->|UNDEAD_ZOMBY[HP: 64]          |
+
+|UNDEAD_HUNTER[HP: 100]        |->|ATTACK_RANGED       |->|4.0   |->|ELVEN_ARCHER[HP: 96]          |
+
+|ELVEN_ARCHER[HP: 96]          |->|ATTACK_RANGED       |->|7.0   |->|UNDEAD_ZOMBY[HP: 93]          |
+
+|ORC_SHAMAN[HP: 79]            |->|CAST_CURSE          |->|0.0   |->|ELVEN_WARRIOR[HP: 98]         |
+
+|UNDEAD_ZOMBY[HP: 64]          |->|ATTACK_MELEE        |->|18.0  |->|ELVEN_MAGE[HP: 32]            |
+
+|ORC_ARCHER[HP: 100]           |->|ATTACK_RANGED       |->|3.0   |->|HUMAN_CROSSBOWMAN[HP: 77]     |
+
+|HUMAN_CROSSBOWMAN[HP: 77]     |->|ATTACK_MELEE        |->|3.0   |->|UNDEAD_ZOMBY[HP: 61]          |
+
+|ORC_GOBLIN[HP: 37]            |->|ATTACK_MELEE        |->|20.0  |->|HUMAN_CROSSBOWMAN[HP: 57]     |
+
+***************3***************
+>----------Start of Priority rond----------<
+
+|ELVEN_WARRIOR[HP: 82]         |->|ATTACK_MELEE_P      |->|22.5  |->|ORC_GOBLIN[HP: 14]            |
+
+>----------End   of Priority rond---------<
+
+|ELVEN_MAGE[HP: 32]            |->|CAST_PRIORITY       |->|0.0   |->|HUMAN_WARRIOR[HP: 78]         |
+
+|ELVEN_WARRIOR[HP: 82]         |->|ATTACK_MELEE        |->|15.0  |->|ORC_SHAMAN[HP: 64]            |
+
+|HUMAN_WARRIOR[HP: 78]         |->|ATTACK_MELEE        |->|18.0  |->|UNDEAD_ZOMBY[HP: 75]          |
+
+|ORC_SHAMAN[HP: 64]            |->|CAST_PRIORITY       |->|0.0   |->|ORC_GOBLIN[HP: 85]            |
+
+|HUMAN_WARRIOR[HP: 78]         |->|ATTACK_MELEE        |->|18.0  |->|UNDEAD_ZOMBY[HP: 43]          |
+
+|ORC_ARCHER[HP: 100]           |->|ATTACK_MELEE        |->|2.0   |->|HUMAN_WARRIOR[HP: 76]         |
+
+|UNDEAD_HUNTER[HP: 100]        |->|ATTACK_MELEE        |->|2.0   |->|HUMAN_WARRIOR[HP: 74]         |
+
+|ORC_GOBLIN[HP: 85]            |->|ATTACK_MELEE        |->|20.0  |->|ELVEN_MAGE[HP: 12]            |
+
+|ELVEN_ARCHER[HP: 80]          |->|ATTACK_MELEE        |->|3.0   |->|ORC_GOBLIN[HP: 82]            |
+
+|UNDEAD_ZOMBY[HP: 75]          |->|ATTACK_MELEE        |->|18.0  |->|HUMAN_WARRIOR[HP: 56]         |
+
+|ORC_GOBLIN[HP: 14]            |->|ATTACK_MELEE        |->|20.0  |->|ELVEN_MAGE[HP: -8]            |
+
+----->UNIT DIED: ELVEN_MAGE[HP: -8]
+
+|ELVEN_ARCHER[HP: 96]          |->|ATTACK_MELEE        |->|3.0   |->|ORC_ARCHER[HP: 97]            |
+
+|ELVEN_WARRIOR[HP: 98]         |->|ATTACK_MELEE        |->|15.0  |->|ORC_GOBLIN[HP: 67]            |
+
+|ORC_ARCHER[HP: 62]            |->|ATTACK_MELEE        |->|2.0   |->|ELVEN_WARRIOR[HP: 80]         |
+
+|UNDEAD_ZOMBY[HP: 43]          |->|ATTACK_MELEE        |->|18.0  |->|ELVEN_ARCHER[HP: 62]          |
+
+|HUMAN_CROSSBOWMAN[HP: 57]     |->|ATTACK_MELEE        |->|3.0   |->|ORC_GOBLIN[HP: 64]            |
+
+***************4***************
+>----------Start of Priority rond----------<
+
+|HUMAN_WARRIOR[HP: 56]         |->|ATTACK_MELEE_P      |->|27.0  |->|ORC_SHAMAN[HP: 37]            |
+
+|ORC_GOBLIN[HP: 64]            |->|ATTACK_MELEE_P      |->|30.0  |->|ELVEN_WARRIOR[HP: 50]         |
+
+>----------End   of Priority rond---------<
+
+|ELVEN_WARRIOR[HP: 98]         |->|ATTACK_MELEE        |->|15.0  |->|ORC_ARCHER[HP: 47]            |
+
+|ORC_ARCHER[HP: 97]            |->|ATTACK_MELEE        |->|2.0   |->|ELVEN_ARCHER[HP: 94]          |
+
+|UNDEAD_ZOMBY[HP: 75]          |->|ATTACK_MELEE        |->|18.0  |->|HUMAN_WARRIOR[HP: 38]         |
+
+|ORC_ARCHER[HP: 47]            |->|ATTACK_RANGED       |->|3.0   |->|HUMAN_WARRIOR[HP: 75]         |
+
+|ORC_GOBLIN[HP: 14]            |->|ATTACK_MELEE        |->|20.0  |->|HUMAN_WARRIOR[HP: 55]         |
+
+|HUMAN_WARRIOR[HP: 38]         |->|ATTACK_MELEE        |->|18.0  |->|ORC_GOBLIN[HP: -4]            |
+
+----->UNIT DIED: ORC_GOBLIN[HP: -4]
+
+|ORC_SHAMAN[HP: 37]            |->|CAST_PRIORITY       |->|0.0   |->|ORC_GOBLIN[HP: 64]            |
+
+|ORC_GOBLIN[HP: 64]            |->|ATTACK_MELEE        |->|20.0  |->|HUMAN_CROSSBOWMAN[HP: 37]     |
+
+|ELVEN_ARCHER[HP: 94]          |->|ATTACK_RANGED       |->|7.0   |->|UNDEAD_ZOMBY[HP: 68]          |
+
+|UNDEAD_ZOMBY[HP: 43]          |->|ATTACK_MELEE        |->|18.0  |->|ELVEN_ARCHER[HP: 44]          |
+
+|HUMAN_WARRIOR[HP: 55]         |->|ATTACK_MELEE        |->|18.0  |->|UNDEAD_ZOMBY[HP: 25]          |
+
+|UNDEAD_HUNTER[HP: 100]        |->|ATTACK_RANGED       |->|4.0   |->|ELVEN_ARCHER[HP: 40]          |
+
+|ELVEN_WARRIOR[HP: 50]         |->|ATTACK_MELEE        |->|15.0  |->|UNDEAD_HUNTER[HP: 85]         |
+
+|HUMAN_CROSSBOWMAN[HP: 37]     |->|ATTACK_MELEE        |->|3.0   |->|UNDEAD_ZOMBY[HP: 65]          |
+
+|ELVEN_ARCHER[HP: 40]          |->|ATTACK_RANGED       |->|7.0   |->|ORC_ARCHER[HP: 90]            |
+
+***************5***************
+>----------Start of Priority rond----------<
+
+|ORC_GOBLIN[HP: 64]            |->|ATTACK_MELEE_P      |->|30.0  |->|ELVEN_ARCHER[HP: 10]          |
+
+>----------End   of Priority rond---------<
+
+|ORC_GOBLIN[HP: 64]            |->|ATTACK_MELEE        |->|20.0  |->|ELVEN_ARCHER[HP: 74]          |
+
+|UNDEAD_HUNTER[HP: 85]         |->|ATTACK_MELEE        |->|2.0   |->|ELVEN_WARRIOR[HP: 48]         |
+
+|HUMAN_WARRIOR[HP: 38]         |->|ATTACK_MELEE        |->|18.0  |->|UNDEAD_ZOMBY[HP: 47]          |
+
+|ELVEN_ARCHER[HP: 74]          |->|ATTACK_MELEE        |->|3.0   |->|UNDEAD_ZOMBY[HP: 44]          |
+
+|ELVEN_WARRIOR[HP: 48]         |->|ATTACK_MELEE        |->|15.0  |->|ORC_ARCHER[HP: 75]            |
+
+|ORC_ARCHER[HP: 47]            |->|ATTACK_RANGED       |->|3.0   |->|HUMAN_WARRIOR[HP: 52]         |
+
+|UNDEAD_ZOMBY[HP: 44]          |->|ATTACK_MELEE        |->|18.0  |->|ELVEN_ARCHER[HP: 56]          |
+
+|ORC_ARCHER[HP: 75]            |->|ATTACK_MELEE        |->|2.0   |->|ELVEN_WARRIOR[HP: 96]         |
+
+|HUMAN_CROSSBOWMAN[HP: 37]     |->|ATTACK_MELEE        |->|3.0   |->|UNDEAD_ZOMBY[HP: 41]          |
+
+|ELVEN_ARCHER[HP: 10]          |->|ATTACK_MELEE        |->|3.0   |->|ORC_ARCHER[HP: 72]            |
+
+|ELVEN_WARRIOR[HP: 96]         |->|ATTACK_MELEE        |->|15.0  |->|ORC_GOBLIN[HP: 49]            |
+
+|HUMAN_WARRIOR[HP: 52]         |->|ATTACK_MELEE        |->|18.0  |->|ORC_ARCHER[HP: 29]            |
+
+|ORC_SHAMAN[HP: 37]            |->|CAST_CURSE          |->|0.0   |->|HUMAN_CROSSBOWMAN[HP: 37]     |
+
+|UNDEAD_ZOMBY[HP: 25]          |->|ATTACK_MELEE        |->|18.0  |->|ELVEN_ARCHER[HP: -8]          |
+
+----->UNIT DIED: ELVEN_ARCHER[HP: -8]
+
+***************6***************
+|HUMAN_CROSSBOWMAN[HP: 37]     |->|ATTACK_RANGED       |->|5.0   |->|UNDEAD_HUNTER[HP: 80]         |
+
+|ORC_ARCHER[HP: 72]            |->|ATTACK_MELEE        |->|2.0   |->|HUMAN_WARRIOR[HP: 36]         |
+
+|ELVEN_ARCHER[HP: 56]          |->|ATTACK_MELEE        |->|3.0   |->|ORC_GOBLIN[HP: 46]            |
+
+|HUMAN_WARRIOR[HP: 52]         |->|ATTACK_MELEE        |->|18.0  |->|ORC_SHAMAN[HP: 19]            |
+
+|UNDEAD_ZOMBY[HP: 41]          |->|ATTACK_MELEE        |->|18.0  |->|ELVEN_WARRIOR[HP: 78]         |
+
+|ORC_SHAMAN[HP: 19]            |->|CAST_CURSE          |->|0.0   |->|HUMAN_WARRIOR[HP: 36]         |
+
+|HUMAN_WARRIOR[HP: 36]         |->|ATTACK_MELEE        |->|18.0  |->|UNDEAD_ZOMBY[HP: 7]           |
+
+|ORC_GOBLIN[HP: 46]            |->|ATTACK_MELEE        |->|20.0  |->|ELVEN_WARRIOR[HP: 28]         |
+
+|UNDEAD_HUNTER[HP: 80]         |->|ATTACK_MELEE        |->|2.0   |->|ELVEN_ARCHER[HP: 54]          |
+
+|UNDEAD_ZOMBY[HP: 7]           |->|ATTACK_MELEE        |->|18.0  |->|HUMAN_WARRIOR[HP: 34]         |
+
+|ELVEN_WARRIOR[HP: 78]         |->|ATTACK_MELEE        |->|15.0  |->|ORC_GOBLIN[HP: 31]            |
+
+|ELVEN_WARRIOR[HP: 28]         |->|ATTACK_MELEE        |->|15.0  |->|UNDEAD_ZOMBY[HP: -8]          |
+
+----->UNIT DIED: UNDEAD_ZOMBY[HP: -8]
+
+|ORC_ARCHER[HP: 29]            |->|ATTACK_RANGED       |->|3.0   |->|ELVEN_WARRIOR[HP: 75]         |
+
+***************7***************
+|ORC_SHAMAN[HP: 19]            |->|CAST_CURSE          |->|0.0   |->|ELVEN_ARCHER[HP: 54]          |
+
+|ELVEN_ARCHER[HP: 54]          |->|ATTACK_MELEE        |->|3.0   |->|UNDEAD_HUNTER[HP: 77]         |
+
+|HUMAN_WARRIOR[HP: 34]         |->|ATTACK_MELEE        |->|18.0  |->|UNDEAD_HUNTER[HP: 59]         |
+
+|ORC_ARCHER[HP: 72]            |->|ATTACK_RANGED       |->|3.0   |->|HUMAN_WARRIOR[HP: 33]         |
+
+|ELVEN_WARRIOR[HP: 28]         |->|ATTACK_MELEE        |->|15.0  |->|UNDEAD_HUNTER[HP: 44]         |
+
+|HUMAN_WARRIOR[HP: 33]         |->|ATTACK_MELEE        |->|18.0  |->|ORC_SHAMAN[HP: 1]             |
+
+|ORC_ARCHER[HP: 29]            |->|ATTACK_MELEE        |->|2.0   |->|ELVEN_ARCHER[HP: 52]          |
+
+|UNDEAD_HUNTER[HP: 44]         |->|ATTACK_MELEE        |->|2.0   |->|HUMAN_CROSSBOWMAN[HP: 35]     |
+
+|HUMAN_CROSSBOWMAN[HP: 35]     |->|ATTACK_RANGED       |->|5.0   |->|ORC_ARCHER[HP: 67]            |
+
+|UNDEAD_ZOMBY[HP: 41]          |->|ATTACK_MELEE        |->|18.0  |->|HUMAN_CROSSBOWMAN[HP: 17]     |
+
+|ELVEN_WARRIOR[HP: 75]         |->|ATTACK_MELEE        |->|15.0  |->|ORC_ARCHER[HP: 52]            |
+
+|ORC_GOBLIN[HP: 31]            |->|ATTACK_MELEE        |->|20.0  |->|HUMAN_WARRIOR[HP: 14]         |
+
+***************8***************
+|ORC_ARCHER[HP: 29]            |->|ATTACK_MELEE        |->|2.0   |->|ELVEN_WARRIOR[HP: 73]         |
+
+|ELVEN_ARCHER[HP: 52]          |->|ATTACK_MELEE        |->|3.0   |->|ORC_SHAMAN[HP: -2]            |
+
+----->UNIT DIED: ORC_SHAMAN[HP: -2]
+
+|ELVEN_WARRIOR[HP: 73]         |->|ATTACK_MELEE        |->|15.0  |->|ORC_GOBLIN[HP: 16]            |
+
+|ELVEN_WARRIOR[HP: 28]         |->|ATTACK_MELEE        |->|15.0  |->|ORC_ARCHER[HP: 37]            |
+
+|HUMAN_WARRIOR[HP: 33]         |->|ATTACK_MELEE        |->|18.0  |->|ORC_GOBLIN[HP: -2]            |
+
+----->UNIT DIED: ORC_GOBLIN[HP: -2]
+
+|UNDEAD_HUNTER[HP: 44]         |->|ATTACK_MELEE        |->|2.0   |->|HUMAN_WARRIOR[HP: 31]         |
+
+|UNDEAD_ZOMBY[HP: 41]          |->|ATTACK_MELEE        |->|18.0  |->|HUMAN_WARRIOR[HP: -4]         |
+
+----->UNIT DIED: HUMAN_WARRIOR[HP: -4]
+
+|ORC_ARCHER[HP: 37]            |->|ATTACK_MELEE        |->|2.0   |->|ELVEN_WARRIOR[HP: 71]         |
+
+|HUMAN_CROSSBOWMAN[HP: 17]     |->|ATTACK_MELEE        |->|3.0   |->|UNDEAD_ZOMBY[HP: 38]          |
+
+***************9***************
+|HUMAN_WARRIOR[HP: 31]         |->|ATTACK_MELEE        |->|18.0  |->|UNDEAD_ZOMBY[HP: 20]          |
+
+|ELVEN_ARCHER[HP: 52]          |->|ATTACK_RANGED       |->|7.0   |->|UNDEAD_HUNTER[HP: 37]         |
+
+|UNDEAD_HUNTER[HP: 37]         |->|ATTACK_MELEE        |->|2.0   |->|HUMAN_WARRIOR[HP: 29]         |
+
+|UNDEAD_ZOMBY[HP: 20]          |->|ATTACK_MELEE        |->|18.0  |->|ELVEN_WARRIOR[HP: 53]         |
+
+|ELVEN_WARRIOR[HP: 28]         |->|ATTACK_MELEE        |->|15.0  |->|UNDEAD_ZOMBY[HP: 5]           |
+
+|ORC_ARCHER[HP: 37]            |->|ATTACK_MELEE        |->|2.0   |->|ELVEN_ARCHER[HP: 50]          |
+
+|ORC_ARCHER[HP: 29]            |->|ATTACK_MELEE        |->|2.0   |->|ELVEN_WARRIOR[HP: 51]         |
+
+|HUMAN_CROSSBOWMAN[HP: 17]     |->|ATTACK_RANGED       |->|5.0   |->|UNDEAD_HUNTER[HP: 32]         |
+
+|ELVEN_WARRIOR[HP: 51]         |->|ATTACK_MELEE        |->|15.0  |->|ORC_ARCHER[HP: 22]            |
+
+***************10***************
+|ORC_ARCHER[HP: 29]            |->|ATTACK_MELEE        |->|2.0   |->|HUMAN_CROSSBOWMAN[HP: 15]     |
+
+|UNDEAD_HUNTER[HP: 32]         |->|ATTACK_MELEE        |->|2.0   |->|ELVEN_WARRIOR[HP: 26]         |
+
+|ELVEN_WARRIOR[HP: 26]         |->|ATTACK_MELEE        |->|15.0  |->|UNDEAD_HUNTER[HP: 17]         |
+
+|ORC_ARCHER[HP: 22]            |->|ATTACK_MELEE        |->|2.0   |->|ELVEN_WARRIOR[HP: 49]         |
+
+|UNDEAD_ZOMBY[HP: 5]           |->|ATTACK_MELEE        |->|18.0  |->|HUMAN_WARRIOR[HP: 11]         |
+
+|ELVEN_WARRIOR[HP: 49]         |->|ATTACK_MELEE        |->|15.0  |->|UNDEAD_ZOMBY[HP: -10]         |
+
+----->UNIT DIED: UNDEAD_ZOMBY[HP: -10]
+
+|ELVEN_ARCHER[HP: 50]          |->|ATTACK_MELEE        |->|3.0   |->|UNDEAD_HUNTER[HP: 14]         |
+
+|HUMAN_CROSSBOWMAN[HP: 15]     |->|ATTACK_RANGED       |->|5.0   |->|ORC_ARCHER[HP: 17]            |
+
+|HUMAN_WARRIOR[HP: 11]         |->|ATTACK_MELEE        |->|18.0  |->|ORC_ARCHER[HP: -1]            |
+
+----->UNIT DIED: ORC_ARCHER[HP: -1]
+
+***************11***************
+|HUMAN_WARRIOR[HP: 11]         |->|ATTACK_MELEE        |->|18.0  |->|ORC_ARCHER[HP: 11]            |
+
+|ELVEN_WARRIOR[HP: 26]         |->|ATTACK_MELEE        |->|15.0  |->|UNDEAD_HUNTER[HP: -1]         |
+
+----->UNIT DIED: UNDEAD_HUNTER[HP: -1]
+
+|ELVEN_WARRIOR[HP: 49]         |->|ATTACK_MELEE        |->|15.0  |->|ORC_ARCHER[HP: -4]            |
+
+----->UNIT DIED: ORC_ARCHER[HP: -4]
+
+LIGHT FORSES WON!!!
+*********************************
+Winning team:
+
+ELVEN_ARCHER[HP: 50]
+
+HUMAN_CROSSBOWMAN[HP: 15]
+
+ELVEN_WARRIOR[HP: 26]
+
+ELVEN_WARRIOR[HP: 49]
+
+HUMAN_WARRIOR[HP: 11]
+
+*********************************
+*********************************

@@ -13,6 +13,9 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JOptionPane;
 import static demo_minigame.UnitAbilities.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -35,9 +38,12 @@ public class ClashOfSquads {
     double priorMagicDamage;
     GameUnit targetPriorityUnit;
     int numberOfRounds = 1;
+
+    LocalDateTime loggLocalDateTime;
     
     public ClashOfSquads(){
 
+        loggLocalDateTime = LocalDateTime.now();
         activeLightSquad.addAll(newSquads.lightSquad);
         activeDarkSquad.addAll(newSquads.darkSquad);
         
@@ -74,9 +80,8 @@ public class ClashOfSquads {
                     loggerWriteToTheConsole(unit, enemyTeam.get(randomTarget), ATTACK_MELEE, unit.attackMelee);
                 }
                 if(isDead(enemyTeam.get(randomTarget))){
-                    System.out.println("");
-                    System.out.println("->UNIT DIED: " + enemyTeam.get(randomTarget));
-                    System.out.println("");
+                    loggerWriteToTheFile("----->UNIT DIED: " + enemyTeam.get(randomTarget) + "\n");
+                    System.out.println("----->UNIT DIED: " + enemyTeam.get(randomTarget));
                     enemyTeam.remove(randomTarget);
                 }
                 break;
@@ -92,9 +97,8 @@ public class ClashOfSquads {
                     loggerWriteToTheConsole(unit, enemyTeam.get(randomTarget), ATTACK_RANGED, unit.attackRange);
                 }
                 if(isDead(enemyTeam.get(randomTarget))){
-                    System.out.println("");
-                    System.out.println("->UNIT DIED: " + enemyTeam.get(randomTarget));
-                    System.out.println("");
+                    loggerWriteToTheFile("----->UNIT DIED: " + enemyTeam.get(randomTarget) + "\n");
+                    System.out.println("----->UNIT DIED: " + enemyTeam.get(randomTarget));
                     enemyTeam.remove(randomTarget);
                 }
                 break;
@@ -103,24 +107,12 @@ public class ClashOfSquads {
                 randomTarget = new Random().nextInt(enemyTeam.size());
                 enemyTeam.get(randomTarget).priorityStatus = false;
                 loggerWriteToTheConsole(unit, enemyTeam.get(randomTarget), CAST_CURSE, 0);
-//                if(isDead(enemyTeam.get(randomTarget))){
-//                    System.out.println("");
-//                    System.out.println("->UNIT DIED: " + enemyTeam.get(randomTarget));
-//                    System.out.println("");
-//                    enemyTeam.remove(randomTarget);
-//                }
                 break;
                 
             case CAST_DISEASE:
                 randomTarget = new Random().nextInt(enemyTeam.size());
                 enemyTeam.get(randomTarget).diseaseStatus = true;
                 loggerWriteToTheConsole(unit, enemyTeam.get(randomTarget), CAST_DISEASE, 0);
-//                if(isDead(enemyTeam.get(randomTarget))){
-//                    System.out.println("");
-//                    System.out.println("->UNIT DIED: " + enemyTeam.get(randomTarget));
-//                    System.out.println("");
-//                    enemyTeam.remove(randomTarget);
-//                }
                 break;
                 
             case CAST_MAGIC_DAMAGE:
@@ -133,9 +125,8 @@ public class ClashOfSquads {
                     loggerWriteToTheConsole(unit, enemyTeam.get(randomTarget), CAST_MAGIC_DAMAGE, unit.castMagicDamage);
                 }
                 if(isDead(enemyTeam.get(randomTarget))){
-                    System.out.println("");
-                    System.out.println("->UNIT DIED: " + enemyTeam.get(randomTarget));
-                    System.out.println("");
+                    loggerWriteToTheFile("----->UNIT DIED: " + enemyTeam.get(randomTarget) + "\n");
+                    System.out.println("----->UNIT DIED: " + enemyTeam.get(randomTarget));
                     enemyTeam.remove(randomTarget);
                 }
                 break;
@@ -156,22 +147,43 @@ public class ClashOfSquads {
     
     public void actionActionAction(){
         
+        loggerWriteToTheFile("*********************************");
+        loggerWriteToTheFile("The Light team is:\n");
+        loggerWriteToTheFile("\n");
         System.out.println("*********************************");
+        System.out.println("The Light team is:\n");
+        
         for(GameUnit iterator : activeLightSquad){
-                System.out.println(iterator.toString());
+            loggerWriteToTheFile(iterator.toString());
+            System.out.println(iterator.toString());
         }
+        
+        loggerWriteToTheFile("*********************************");
+        loggerWriteToTheFile("The Dark team is: \n");
+        loggerWriteToTheFile("\n");
         System.out.println("*********************************");
+        System.out.println("The Dark team is:\n");
+        
+        
         for(GameUnit iterator : activeDarkSquad){
-                System.out.println(iterator.toString());
+            loggerWriteToTheFile(iterator.toString());
+            System.out.println(iterator.toString());
         }
+        
+        loggerWriteToTheFile("*********************************");
         System.out.println("*********************************");
         
         while(true){
 
             generateQueue();
             
+            loggerTurnDisplayer(numberOfRounds);
+            
             if(!priorityDeque.isEmpty()){
+                
+                loggerWriteToTheFile(">----------Start of Priority rond----------<\n");
                 System.out.println(">----------Start of Priority rond----------<");
+                
                 for(GameUnit iterator : priorityDeque){
                         if(iterator.priorityStatus){
                         performAllNecessaryChecksAnsStepsForCurrentUnit(iterator);
@@ -183,12 +195,17 @@ public class ClashOfSquads {
                         priorityDeque.poll();
                     }
                 }
+                
+                loggerWriteToTheFile(">----------End   of Priority rond---------<\n");
                 System.out.println(">----------End   of Priority rond---------<");
-                System.out.println("");
             }
             
-            if(activeLightSquad.isEmpty()){ System.out.println("DARK FORSES WON!!!"); break;}
-            if(activeDarkSquad.isEmpty()){ System.out.println("LIGHT FORSES WON!!!"); break;}
+            if(activeLightSquad.isEmpty()){ 
+                loggerWriteToTheFile("DARK FORSES WON!!!");
+                System.out.println("DARK FORSES WON!!!"); break;}
+            if(activeDarkSquad.isEmpty()){ 
+                loggerWriteToTheFile("LIGHT FORSES WON!!!");
+                System.out.println("LIGHT FORSES WON!!!"); break;}
 
             for(GameUnit iterator : playOrder){
                 performAllNecessaryChecksAnsStepsForCurrentUnit(iterator);
@@ -203,23 +220,41 @@ public class ClashOfSquads {
                 }
             }
             
-            if(activeLightSquad.isEmpty()){ System.out.println("DARK FORSES WON!!!"); break;}
-            if(activeDarkSquad.isEmpty()){ System.out.println("LIGHT FORSES WON!!!"); break;}
+            if(activeLightSquad.isEmpty()){ 
+                loggerWriteToTheFile("DARK FORSES WON!!!");
+                System.out.println("DARK FORSES WON!!!"); break;}
+            if(activeDarkSquad.isEmpty()){ 
+                 loggerWriteToTheFile("LIGHT FORSES WON!!!");
+                System.out.println("LIGHT FORSES WON!!!"); break;}
             
             numberOfRounds++;
-            loggerTurnDisplayer(numberOfRounds);
-            
-             
         }
         
+        loggerWriteToTheFile("*********************************");
         System.out.println("*********************************");
-        for(GameUnit iterator : activeLightSquad){
+        
+        if(!activeLightSquad.isEmpty()){
+            loggerWriteToTheFile("Winning team:\n");
+            System.out.println("Winning team:");
+            for(GameUnit iterator : activeLightSquad){
+                loggerWriteToTheFile(iterator.toString()+ "\n");
                 System.out.println(iterator.toString());
+            }
         }
+        
+        loggerWriteToTheFile("*********************************");
         System.out.println("*********************************");
-        for(GameUnit iterator : activeDarkSquad){
+        
+        if(!activeDarkSquad.isEmpty()){
+            loggerWriteToTheFile("Winning team:\n");
+            System.out.println("Winning team:");
+            for(GameUnit iterator : activeDarkSquad){
+                loggerWriteToTheFile(iterator.toString()+ "\n");
                 System.out.println(iterator.toString());
+            }
         }
+
+        loggerWriteToTheFile("*********************************");
         System.out.println("*********************************");
         
     }
@@ -264,19 +299,32 @@ public class ClashOfSquads {
         return unitTested.healt <= 0;
     }
     
-    private void loggerWriteToTheFile(){
-        //TODO this method must write battle events into the file
+    private void loggerWriteToTheFile(String infoToLog){
+        
+        String specifiedPath = "logFile " + loggLocalDateTime.toString() + ".txt";
+        try(FileWriter fw = new FileWriter(specifiedPath.replace(':', '-'), true);
+            BufferedWriter writer = new BufferedWriter(fw)){
+            writer.write(infoToLog);
+            writer.newLine();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.toString(), "InfoBox at main method: " + "Error Message", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
     
     private void loggerWriteToTheConsole(GameUnit attacker, GameUnit deffender, Enum skill, double damage){
         if(attacker.diseaseStatus){
-            System.out.printf("|%-30s|->|%-20s|->|%-4s*|->|%-30s|\n", attacker.toString(), skill, damage, deffender.toString());
+            String infoToLog = String.format("|%-30s|->|%-20s|->|%-5s*|->|%-30s|", attacker.toString(), skill, damage, deffender.toString());
+            System.out.println(infoToLog);
+            loggerWriteToTheFile(infoToLog+ "\n");
         }else{
-            System.out.printf("|%-30s|->|%-20s|->|%-5s|->|%-30s|\n", attacker.toString(), skill, damage, deffender.toString());
+            String infoToLog = String.format("|%-30s|->|%-20s|->|%-6s|->|%-30s|", attacker.toString(), skill, damage, deffender.toString());
+            System.out.println(infoToLog);
+            loggerWriteToTheFile(infoToLog + "\n");
         }
     }
     
     private void loggerTurnDisplayer(int numberOfRounds){
+        loggerWriteToTheFile("***************" + numberOfRounds + "***************");
         System.out.println("***************" + numberOfRounds + "***************");
     }
     
